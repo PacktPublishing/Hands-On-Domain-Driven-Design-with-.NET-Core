@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+
+  postgres:
+    container_name: marketplace-ch8-postgres
+    image: postgres
+    ports:
+    - 5432:5432
+    volumes:
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
