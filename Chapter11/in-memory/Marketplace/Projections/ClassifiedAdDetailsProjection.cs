@@ -2,18 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Marketplace.Domain.ClassifiedAd;
 using Marketplace.Framework;
+using static Marketplace.Domain.ClassifiedAd.Events;
+using static Marketplace.Domain.UserProfile.Events;
+using static Marketplace.Projections.ClassifiedAdUpcastedEvents;
+using static Marketplace.Projections.ReadModels;
 
 namespace Marketplace.Projections
 {
     public class ClassifiedAdDetailsProjection : IProjection
     {
-        private List<ReadModels.ClassifiedAdDetails> _items;
+        private readonly List<ClassifiedAdDetails> _items;
         private readonly Func<Guid, string> _getUserDisplayName;
 
-        public ClassifiedAdDetailsProjection(List<ReadModels.ClassifiedAdDetails> items,
-            Func<Guid, string> getUserDisplayName)
+        public ClassifiedAdDetailsProjection(
+            List<ClassifiedAdDetails> items,
+            Func<Guid, string> getUserDisplayName
+        )
         {
             _items = items;
             _getUserDisplayName = getUserDisplayName;
@@ -23,32 +28,39 @@ namespace Marketplace.Projections
         {
             switch (@event)
             {
-                case Events.ClassifiedAdCreated e:
-                    _items.Add(new ReadModels.ClassifiedAdDetails
-                    {
-                        ClassifiedAdId = e.Id,
-                        SellerId = e.OwnerId,
-                        SellersDisplayName = _getUserDisplayName(e.OwnerId)
-                    });
+                case ClassifiedAdCreated e:
+                    _items.Add(
+                        new ClassifiedAdDetails
+                        {
+                            ClassifiedAdId = e.Id,
+                            SellerId = e.OwnerId,
+                            SellersDisplayName = 
+                                _getUserDisplayName(e.OwnerId)
+                        }
+                    );
                     break;
-                case Events.ClassifiedAdTitleChanged e:
+                case ClassifiedAdTitleChanged e:
                     UpdateItem(e.Id, ad => ad.Title = e.Title);
                     break;
-                case Events.ClassifiedAdTextUpdated e:
+                case ClassifiedAdTextUpdated e:
                     UpdateItem(e.Id, ad => ad.Description = e.AdText);
                     break;
-                case Events.ClassifiedAdPriceUpdated e:
-                    UpdateItem(e.Id, ad =>
-                    {
-                        ad.Price = e.Price;
-                        ad.CurrencyCode = e.CurrencyCode;
-                    });
+                case ClassifiedAdPriceUpdated e:
+                    UpdateItem(
+                        e.Id, ad =>
+                        {
+                            ad.Price = e.Price;
+                            ad.CurrencyCode = e.CurrencyCode;
+                        }
+                    );
                     break;
-                case Domain.UserProfile.Events.UserDisplayNameUpdated e:
-                    UpdateMultipleItems(x => x.SellerId == e.UserId,
-                        x => x.SellersDisplayName = e.DisplayName);
+                case UserDisplayNameUpdated e:
+                    UpdateMultipleItems(
+                        x => x.SellerId == e.UserId,
+                        x => x.SellersDisplayName = e.DisplayName
+                    );
                     break;
-                case ClassifiedAdUpcastedEvents.V1.ClassifiedAdPublished e:
+                case V1.ClassifiedAdPublished e:
                     UpdateItem(e.Id, ad => ad.SellersPhotoUrl = e.SellersPhotoUrl);
                     break;
             }
@@ -56,7 +68,7 @@ namespace Marketplace.Projections
             return Task.CompletedTask;
         }
 
-        private void UpdateItem(Guid id, Action<ReadModels.ClassifiedAdDetails> update)
+        private void UpdateItem(Guid id, Action<ClassifiedAdDetails> update)
         {
             var item = _items.FirstOrDefault(x => x.ClassifiedAdId == id);
             if (item == null) return;
@@ -64,8 +76,10 @@ namespace Marketplace.Projections
             update(item);
         }
 
-        private void UpdateMultipleItems(Func<ReadModels.ClassifiedAdDetails, bool> query,
-            Action<ReadModels.ClassifiedAdDetails> update)
+        private void UpdateMultipleItems(
+            Func<ClassifiedAdDetails, bool> query,
+            Action<ClassifiedAdDetails> update
+        )
         {
             foreach (var item in _items.Where(query))
                 update(item);

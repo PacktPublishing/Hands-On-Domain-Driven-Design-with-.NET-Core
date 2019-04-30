@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using EventStore.ClientAPI;
 using Marketplace.ClassifiedAd;
-using Marketplace.Domain;
 using Marketplace.Framework;
 using Marketplace.Infrastructure;
 using Marketplace.Projections;
 using Marketplace.UserProfile;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -68,7 +66,7 @@ namespace Marketplace
             services.AddSingleton<IHostedService>(
                 new EventStoreService(esConnection, projectionManager));
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",

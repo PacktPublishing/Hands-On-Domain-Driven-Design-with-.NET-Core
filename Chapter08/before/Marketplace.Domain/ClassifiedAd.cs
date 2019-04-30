@@ -50,7 +50,8 @@ namespace Marketplace.Domain
         public void RequestToPublish() =>
             Apply(new Events.ClassidiedAdSentForReview {Id = Id});
         
-        public void AddPicture(Uri pictureUri, PictureSize size) =>
+        public void AddPicture(Uri pictureUri, PictureSize size)
+        {
             Apply(new Events.PictureAddedToAClassifiedAd
             {
                 PictureId = new Guid(),
@@ -58,8 +59,11 @@ namespace Marketplace.Domain
                 Url = pictureUri.ToString(),
                 Height = size.Height,
                 Width = size.Width,
-                Order = Pictures.Max(x => x.Order)
+                Order = NewPictureOrder()
             });
+            
+            int NewPictureOrder() => Pictures.Any() ? Pictures.Max(x => x.Order) + 1 : 0;
+        }
 
         public void ResizePicture(PictureId pictureId, PictureSize newSize)
         {

@@ -12,10 +12,7 @@ namespace Marketplace.Infrastructure
     {
         private readonly IEventStoreConnection _connection;
 
-        public EsAggregateStore(IEventStoreConnection connection)
-        {
-            _connection = connection;
-        }
+        public EsAggregateStore(IEventStoreConnection connection) => _connection = connection;
 
         public async Task Save<T, TId>(T aggregate) where T : AggregateRoot<TId>
         {

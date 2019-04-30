@@ -58,7 +58,8 @@ namespace Marketplace.Domain
         public void RequestToPublish() =>
             Apply(new Events.ClassidiedAdSentForReview {Id = Id});
         
-        public void AddPicture(Uri pictureUri, PictureSize size) =>
+        public void AddPicture(Uri pictureUri, PictureSize size)
+        {
             Apply(new Events.PictureAddedToAClassifiedAd
             {
                 PictureId = new Guid(),
@@ -66,8 +67,11 @@ namespace Marketplace.Domain
                 Url = pictureUri.ToString(),
                 Height = size.Height,
                 Width = size.Width,
-                Order = Pictures.Max(x => x.Order)
+                Order = NewPictureOrder()
             });
+            
+            int NewPictureOrder() => Pictures.Any() ? Pictures.Max(x => x.Order) + 1 : 0;
+        }
 
         public void ResizePicture(PictureId pictureId, PictureSize newSize)
         {
@@ -122,28 +126,27 @@ namespace Marketplace.Domain
 
         protected override void EnsureValidState()
         {
-            bool valid = Id != null && OwnerId != null;
-            switch (State)
-            {
-                case ClassifiedAdState.PendingReview:
-                    valid = valid
-                            && Title != null
-                            && Text != null
-                            && Price?.Amount > 0
-                            && FirstPicture.HasCorrectSize();
-                    break;
-                case ClassifiedAdState.Active:
-                    valid = valid
-                            && Title != null
-                            && Text != null
-                            && Price?.Amount > 0
-                            && FirstPicture.HasCorrectSize()
-                            && ApprovedBy != null;
-                    break;
-            }
+            var valid =
+                Id != null && OwnerId != null &&
+                (State switch
+                {
+                    ClassifiedAdState.PendingReview =>
+                        Title != null
+                        && Text != null
+                        && Price?.Amount > 0
+                        && FirstPicture.HasCorrectSize(),
+                    ClassifiedAdState.Active =>
+                        Title != null
+                        && Text != null
+                        && Price?.Amount > 0
+                        && FirstPicture.HasCorrectSize()
+                        && ApprovedBy != null,
+                    _ => true
+                });
 
             if (!valid)
-                throw new InvalidEntityStateException(this, $"Post-checks failed in state {State}");
+                throw new InvalidEntityStateException(this, 
+                    $"Post-checks failed in state {State}");
         }
 
         public enum ClassifiedAdState

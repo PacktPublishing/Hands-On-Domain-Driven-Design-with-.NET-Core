@@ -24,6 +24,7 @@ namespace Marketplace.Tests
             _classifiedAd.UpdateText(ClassifiedAdText.FromString("Please buy my stuff"));
             _classifiedAd.UpdatePrice(
                 Price.FromDecimal(100.10m, "EUR", new FakeCurrencyLookup()));
+            _classifiedAd.AddPicture(new Uri("http://localhost/storage/123.jpg"), new PictureSize(1200, 620));
             
             _classifiedAd.RequestToPublish();
 

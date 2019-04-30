@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using EventStore.ClientAPI;
 using Marketplace.Framework;
 using Marketplace.Infrastructure;
+using static Marketplace.Domain.ClassifiedAd.Events;
+using static Marketplace.Projections.ClassifiedAdUpcastedEvents;
 
 namespace Marketplace.Projections
 {
@@ -12,7 +14,8 @@ namespace Marketplace.Projections
         private readonly Func<Guid, Task<string>> _getUserPhoto;
         private const string StreamName = "UpcastedClassifiedAdEvents";
 
-        public ClassifiedAdUpcasters(IEventStoreConnection eventStoreConnection,
+        public ClassifiedAdUpcasters(
+            IEventStoreConnection eventStoreConnection,
             Func<Guid, Task<string>> getUserPhoto)
         {
             _eventStoreConnection = eventStoreConnection;
@@ -23,9 +26,9 @@ namespace Marketplace.Projections
         {
             switch (@event)
             {
-                case Domain.ClassifiedAd.Events.ClassifiedAdPublished e:
+                case ClassifiedAdPublished e:
                     var photoUrl = await _getUserPhoto(e.OwnerId);
-                    var newEvent = new ClassifiedAdUpcastedEvents.V1.ClassifiedAdPublished
+                    var newEvent = new V1.ClassifiedAdPublished
                     {
                         Id = e.Id,
                         OwnerId = e.OwnerId,

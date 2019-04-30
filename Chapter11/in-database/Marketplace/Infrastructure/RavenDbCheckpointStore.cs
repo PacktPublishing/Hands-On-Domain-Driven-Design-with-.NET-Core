@@ -21,30 +21,30 @@ namespace Marketplace.Infrastructure
 
         public async Task<Position> GetCheckpoint()
         {
-            using (var session = _getSession())
-            {
-                var checkpoint = await session.LoadAsync<Checkpoint>(_checkpointName);
-                return checkpoint?.Position ?? Position.Start;
-            }
+            using var session = _getSession();
+            var checkpoint = await session
+                .LoadAsync<Checkpoint>(_checkpointName);
+            return checkpoint?.Position ?? Position.Start;
         }
 
         public async Task StoreCheckpoint(Position position)
         {
-            using (var session = _getSession())
+            using var session = _getSession();
+            
+            var checkpoint = await session
+                .LoadAsync<Checkpoint>(_checkpointName);
+            
+            if (checkpoint == null)
             {
-                var checkpoint = await session.LoadAsync<Checkpoint>(_checkpointName);
-                if (checkpoint == null)
+                checkpoint = new Checkpoint
                 {
-                    checkpoint = new Checkpoint
-                    {
-                        Id = _checkpointName
-                    };
-                    await session.StoreAsync(checkpoint);
-                }
-
-                checkpoint.Position = position;
-                await session.SaveChangesAsync();
+                    Id = _checkpointName
+                };
+                await session.StoreAsync(checkpoint);
             }
+
+            checkpoint.Position = position;
+            await session.SaveChangesAsync();
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Marketplace.EventSourcing\Marketplace.EventSourcing.csproj" />
+    <ProjectReference Include="..\Marketplace.Users.Messages\Marketplace.Users.Messages.csproj" />
+  </ItemGroup>
+
+</Project>

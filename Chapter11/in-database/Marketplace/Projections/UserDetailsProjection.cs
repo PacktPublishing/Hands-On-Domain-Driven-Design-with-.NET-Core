@@ -6,34 +6,37 @@ using Raven.Client.Documents.Session;
 
 namespace Marketplace.Projections
 {
-    public class UserDetailsProjection : RavenDbProjection<ReadModels.UserDetails>
+    public class UserDetailsProjection
+        : RavenDbProjection<ReadModels.UserDetails>
     {
-        public UserDetailsProjection(Func<IAsyncDocumentSession> getSession)
-            : base(getSession)
-        {
-        }
+        public UserDetailsProjection(
+            Func<IAsyncDocumentSession> getSession
+        ) : base(getSession) { }
 
-        public override async Task Project(object @event)
-        {
-            switch (@event)
+        public override Task Project(object @event) => 
+            @event switch
             {
-                case Events.UserRegistered e:
-                    await UsingSession(session =>
-                        session.StoreAsync(new ReadModels.UserDetails
-                        {
-                            Id = e.UserId.ToString(),
-                            DisplayName = e.DisplayName
-                        }));
-                    break;
-                case Events.UserDisplayNameUpdated e:
-                    await UsingSession(session =>
-                        UpdateItem(session, e.UserId, x => x.DisplayName = e.DisplayName));
-                    break;
-                case Events.ProfilePhotoUploaded e:
-                    await UsingSession(session =>
-                        UpdateItem(session, e.UserId, x => x.PhotoUrl = e.PhotoUrl));
-                    break;
-            }
-        }
+                Events.UserRegistered e =>
+                    Create(
+                        () => Task.FromResult(
+                            new ReadModels.UserDetails
+                            {
+                                Id = e.UserId.ToString(),
+                                DisplayName = e.DisplayName
+                            }
+                        )
+                    ),
+                Events.UserDisplayNameUpdated e =>
+                    UpdateOne(
+                        e.UserId,
+                        x => x.DisplayName = e.DisplayName
+                    ),
+                Events.ProfilePhotoUploaded e =>
+                    UpdateOne(
+                        e.UserId,
+                        x => x.PhotoUrl = e.PhotoUrl
+                    ),
+                _ => Task.CompletedTask
+            };
     }
 }

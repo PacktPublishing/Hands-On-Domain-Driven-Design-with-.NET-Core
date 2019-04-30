@@ -30,14 +30,14 @@ namespace Marketplace
         public void ConfigureServices(IServiceCollection services)
         {
             var store = new DocumentStore
-              {
-                  Urls = new[] {"http://localhost:8080"},
-                  Database = "Marketplace_Chapter8",
-                  Conventions =
-                  {
-                      FindIdentityProperty = x => x.Name == "DbId"
-                  }
-              };
+            {
+                Urls = new[] {"http://localhost:8080"},
+                Database = "Marketplace_Chapter8",
+                Conventions =
+                {
+                    FindIdentityProperty = x => x.Name == "DbId"
+                }
+            };
             store.Initialize();
 
             services.AddSingleton<ICurrencyLookup, FixedCurrencyLookup>();
@@ -47,23 +47,29 @@ namespace Marketplace
             services.AddScoped<ClassifiedAdsApplicationService>();
 
             services.AddMvc();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1",
-                    new Info
-                    {
-                        Title = "ClassifiedAds",
-                        Version = "v1"
-                    });
-            });
+            services.AddSwaggerGen(
+                c =>
+                {
+                    c.SwaggerDoc(
+                        "v1",
+                        new Info
+                        {
+                            Title = "ClassifiedAds",
+                            Version = "v1"
+                        }
+                    );
+                }
+            );
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseMvcWithDefaultRoute();
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ClassifiedAds v1"));
+            app.UseSwaggerUI(
+                c =>
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ClassifiedAds v1")
+            );
         }
     }
 }

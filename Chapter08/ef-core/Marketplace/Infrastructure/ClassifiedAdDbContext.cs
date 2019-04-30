@@ -15,9 +15,7 @@ namespace Marketplace.Infrastructure
             DbContextOptions<ClassifiedAdDbContext> options,
             ILoggerFactory loggerFactory)
             : base(options)
-        {
-            _loggerFactory = loggerFactory;
-        }
+            => _loggerFactory = loggerFactory;
 
         public DbSet<ClassifiedAd> ClassifiedAds { get; set; }
 
