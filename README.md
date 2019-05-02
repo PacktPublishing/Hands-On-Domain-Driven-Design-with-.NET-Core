@@ -4,7 +4,7 @@
 
 This is the code repository for [Hands-On Domain-Driven Design with .NET Core](https://www.packtpub.com/application-development/hands-domain-driven-design-net?utm_source=github&utm_medium=repository&utm_campaign=9781788834094), published by Packt.
 
-**Solve complex business problems by understanding users better, finding the right problem to solve, and building lean event-driven systems to give your customers what they really want**
+**Tackling complexity in the heart of software by putting DDD principles into practice**
 
 ## What is this book about?
 Developers across the world are rapidly adopting DDD principles to deliver powerful results when writing software that deals with complex business requirements. This book will guide you in involving business stakeholders when choosing the software you are planning to build for them. By figuring out the temporal nature of behavior-driven domain models, you will be able to build leaner, more agile, and modular systems.
