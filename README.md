@@ -36,20 +36,17 @@ protected async Task UsingSession(
 **Following is what you need for this book:**
 This book is for .NET developers who have an intermediate level understanding of C#, and for those who seek to deliver value, not just write code. Intermediate level of competence in JavaScript will be helpful to follow the UI chapters.
 
-With the following software and hardware list you can run all code files present in the book (Chapter 1-).
+With the following software and hardware list you can run all code files present in the book (Chapter 5-11, 13).
 ### Software and Hardware List
-| Chapter | Software required | OS required |
+| No.| Software required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| 1 | JetBrains Rider 2019.1 or higher | Windows, Linux, macOS |
+| 2 | Microsoft Visual Studio | Windows, Linux, macOS |
+| 3 | Docker 18.09.2 or higher | Windows, Linux, macOS |
+| 4 | .NET Core SDK 2.2.203 or higher | Windows, Linux, macOS |
+| 5 | EventStore | Windows, Linux, macOS |
+| 6 | PostgreSQL | Windows, Linux, macOS |
+| 7 | RavenDB | Windows, Linux, macOS |
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://www.packtpub.com/sites/default/files/downloads/9781788834094_ColorImages.pdf).
 
