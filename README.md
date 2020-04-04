@@ -1,6 +1,6 @@
 # Hands-On Domain-Driven Design with .NET Core
 
-<a href="https://www.packtpub.com/application-development/hands-domain-driven-design-net?utm_source=github&utm_medium=repository&utm_campaign=9781788834094 "><img src="https://dz13w8afd47il.cloudfront.net/sites/default/files/imagecache/ppv4_main_book_cover/9781788834094cover.png" alt="Hands-On Domain-Driven Design with .NET Core" height="256px" align="right"></a>
+<a href="https://www.packtpub.com/application-development/hands-domain-driven-design-net?utm_source=github&utm_medium=repository&utm_campaign=9781788834094 "><img src="https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/9/7/9781788834094-original.jpeg" alt="Hands-On Domain-Driven Design with .NET Core" height="256px" align="right"></a>
 
 This is the code repository for [Hands-On Domain-Driven Design with .NET Core](https://www.packtpub.com/application-development/hands-domain-driven-design-net?utm_source=github&utm_medium=repository&utm_campaign=9781788834094), published by Packt.
 
