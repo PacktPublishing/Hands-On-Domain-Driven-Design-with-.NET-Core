@@ -15,7 +15,7 @@ namespace Marketplace.Domain.UserProfile
             CheckTextForProfanity hasProfanity)
         {
             if (displayName.IsEmpty())
-                throw new ArgumentNullException(nameof(FullName));
+                throw new ArgumentNullException(nameof(displayName));
             
             if (hasProfanity(displayName))
                 throw new DomainExceptions.ProfanityFound(displayName);

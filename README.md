@@ -53,7 +53,8 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 ## Errata 
  
 Page 19 (Paragraph 1, line 5): **At the other hand** _should be_ **On the other hand** </br>
-Page 152 (Paragraph 1, line 4): **That's we call this layer** _should be_ **That's why we call this layer**
+Page 152 (Paragraph 1, line 4): **That's we call this layer** _should be_ **That's why we call this layer** </br>
+Page 32 (Paragraph 5, line 32): **silly in front of the bund of nerds** _should be_ **silly in front of the bunch of nerds**
 
 ### Related products
 * Hands-On Object-Oriented Programming with C# [[Packt]](https://www.packtpub.com/application-development/hands-object-oriented-programming-c?utm_source=github&utm_medium=repository&utm_campaign=9781788296229) [[Amazon]](https://www.amazon.com/dp/1788296222)
