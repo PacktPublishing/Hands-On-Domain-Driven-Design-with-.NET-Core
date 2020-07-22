@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace", "src\Marketpl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Ads.Domain", "src\Marketplace.Ads.Domain\Marketplace.Ads.Domain.csproj", "{AD477131-DFD9-4CF1-A42F-7B932148B4AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Ads.Tests", "tests\Marketplace.Ads.Tests\Marketplace.Ads.Tests.csproj", "{F682B8F9-A43B-4D6D-BECE-4F45767A026A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.EventSourcing", "src\Marketplace.EventSourcing\Marketplace.EventSourcing.csproj", "{FEE71FF8-559C-40CC-9AF5-1E4051EE9C7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.PaidServices.Domain", "src\Marketplace.PaidServices.Domain\Marketplace.PaidServices.Domain.csproj", "{5B72EA27-0DE0-45C9-80C1-17A3F30DB6E5}"
@@ -34,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Users.Messages"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.WebApi", "src\Marketplace.WebApi\Marketplace.WebApi.csproj", "{2ED6B97C-4C4B-4A35-8CF3-57B3BD8F8D2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Ads.Tests", "tests\Marketplace.Ads.Tests\Marketplace.Ads.Tests.csproj", "{513B7F24-8DB2-4D18-AF8E-3707F4D75E5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,10 +48,6 @@ Global
 		{AD477131-DFD9-4CF1-A42F-7B932148B4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD477131-DFD9-4CF1-A42F-7B932148B4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD477131-DFD9-4CF1-A42F-7B932148B4AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F682B8F9-A43B-4D6D-BECE-4F45767A026A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F682B8F9-A43B-4D6D-BECE-4F45767A026A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F682B8F9-A43B-4D6D-BECE-4F45767A026A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F682B8F9-A43B-4D6D-BECE-4F45767A026A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FEE71FF8-559C-40CC-9AF5-1E4051EE9C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FEE71FF8-559C-40CC-9AF5-1E4051EE9C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEE71FF8-559C-40CC-9AF5-1E4051EE9C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -100,12 +96,16 @@ Global
 		{2ED6B97C-4C4B-4A35-8CF3-57B3BD8F8D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ED6B97C-4C4B-4A35-8CF3-57B3BD8F8D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ED6B97C-4C4B-4A35-8CF3-57B3BD8F8D2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{513B7F24-8DB2-4D18-AF8E-3707F4D75E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{513B7F24-8DB2-4D18-AF8E-3707F4D75E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{513B7F24-8DB2-4D18-AF8E-3707F4D75E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{513B7F24-8DB2-4D18-AF8E-3707F4D75E5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F682B8F9-A43B-4D6D-BECE-4F45767A026A} = {11ACA044-780C-4C71-A6F7-ECFB6B26B9E7}
 		{FEE71FF8-559C-40CC-9AF5-1E4051EE9C7C} = {B8B2A008-6E95-4BEE-9BE3-DC621B4DC4EC}
 		{EA7B5B15-9095-4082-ADC3-E367513C54B6} = {B8B2A008-6E95-4BEE-9BE3-DC621B4DC4EC}
 		{D2D334CA-B388-47EB-848A-4345A4E0E221} = {B8B2A008-6E95-4BEE-9BE3-DC621B4DC4EC}
 		{2ED6B97C-4C4B-4A35-8CF3-57B3BD8F8D2B} = {B8B2A008-6E95-4BEE-9BE3-DC621B4DC4EC}
+		{513B7F24-8DB2-4D18-AF8E-3707F4D75E5C} = {11ACA044-780C-4C71-A6F7-ECFB6B26B9E7}
 	EndGlobalSection
 EndGlobal
