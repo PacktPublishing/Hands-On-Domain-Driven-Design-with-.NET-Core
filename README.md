@@ -63,7 +63,7 @@ Page 32 (Paragraph 5, line 32): **silly in front of the bund of nerds** _should 
 
 ## Get to Know the Author
 **Alexey Zimarev**
-is a software architect with a present focus on domain models, Domain-Driven Design (DDD), event sourcing, message-driven systems and microservices, coaching, and mentoring. Alexey is also a contributor to several open source projects, such as RestSharp and MassTransit, and is the organizer of the DDD Norway meetup.
+is a software architect with a present focus on domain models, Domain-Driven Design (DDD), event sourcing, message-driven systems and microservices, coaching, and mentoring. Alexey is also a contributor to several open source projects, such as RestSharp, Proto.Actor and MassTransit, and is the organizer of the DDD Norway meetup. Check [Alexey's blog](https://zimarev.com) and reach out in Twitter [@Zimareff](https://twitter.com/Zimareff).
 
 ### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSdy7dATC6QmEL81FIUuymZ0Wy9vH1jHkvpY57OiMeKGqib_Ow/viewform) if you have any feedback or suggestions.
