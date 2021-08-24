@@ -43,7 +43,7 @@ namespace Marketplace.Domain
 
         public Money Add(Money summand)
         {
-            if (!CurrencyMismatchPolicy.IsAllowed(Currency, subtrahend.Currency))
+            if (!CurrencyMismatchPolicy.IsAllowed(Currency, summand.Currency))
                 throw new CurrencyMismatchException(
                     "Cannot sum amounts with different currencies");
 
