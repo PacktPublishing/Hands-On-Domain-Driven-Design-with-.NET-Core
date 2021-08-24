@@ -43,7 +43,7 @@ namespace Marketplace.Domain
 
         public Money Add(Money summand)
         {
-            if (Currency != summand.Currency)
+            if (!CurrencyMismatchPolicy.IsAllowed(Currency, subtrahend.Currency))
                 throw new CurrencyMismatchException(
                     "Cannot sum amounts with different currencies");
 
@@ -52,7 +52,7 @@ namespace Marketplace.Domain
 
         public Money Subtract(Money subtrahend)
         {
-            if (Currency != subtrahend.Currency)
+            if (!CurrencyMismatchPolicy.IsAllowed(Currency, subtrahend.Currency))
                 throw new CurrencyMismatchException(
                     "Cannot subtract amounts with different currencies");
 
@@ -66,6 +66,11 @@ namespace Marketplace.Domain
             minuend.Subtract(subtrahend);
 
         public override string ToString() => $"{Currency.CurrencyCode} {Amount}";
+        
+        public static class CurrencyMismatchPolicy
+        {
+            public static bool IsAllowed(Currency currentCurrency, Currency otherCurrency) => currentCurrency == otherCurrency;
+        }
     }
 
     public class CurrencyMismatchException : Exception
